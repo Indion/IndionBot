@@ -105,7 +105,10 @@ while True:
         color.write("======================================================================\n" , "STRING")
     elif (a == 5):
         print("Rules : 1.Answer as directed \n 2.Each Correct response will fetch 1 point , whereas a wrong one will cost deduction of 1 point ")
-        print("So get ready...get ready for the first one\n")
+        res= pyg.figlet_format("So Get ready \n All the best",font="slant")     
+        print(res)
+        time.sleep(1)
+
         score = 0
         first = input("When did the Constitution of India got ready (year)?")
         if (first == "1949"):
