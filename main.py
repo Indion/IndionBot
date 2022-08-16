@@ -3,31 +3,13 @@
 
 #Libraries
 import sys 
-from tkinter import *
 import pyfiglet as pyg  
 import random
 import wikipedia
 import time
-from PyDictionary import PyDictionary
+from translate import Translator
 import matplotlib.pyplot as plt
 import numpy as np
-
-#Color Codes
-#STRING ~ Green
-#SYNC ~ black
-#stdin ~ black
-#BUILTIN ~ Purple
-#console ~ Maroon
-#COMMENT ~ Red
-#stdout ~ Blue
-#TODO ~ Black
-#stderr ~ Red
-#hit ~ White text, Black Bg
-#DEFINITION ~ Blue
-#KEYWORD ~ Orange
-#ERROR ~ Black text , Red Bg
-#sel ~ Black text, grey BG
-
 
 #Functions
 try :
@@ -45,7 +27,7 @@ facts = ["An Adult giraffe's kick is so powerful that it can kill a lion" , "Squ
 #Head
 res= pyg.figlet_format("Welcome to \n Indion Bot")     
 print(res)
-color.write("Your All new Personal Companion in Learning" , "ERROR")
+color.write("Your All new Personal Companion in Learning\n" , "ERROR")
 
 #Main Code
 color.write(random.choice(greet) , "KEYWORD")
@@ -58,7 +40,7 @@ else:
 color.write("I can\n"
         "1. Provide you some cool Wikipedia Summaries\n"
         "2. Get Visualized track of your grades in exam\n"
-        "3. Tell You the meaning of English Words\n"
+        "3. Tell You the translation of Sentences\n"
         "4. List out Some Random Facts\n"
         "5. A Quick Trivia\n"
         )
@@ -89,14 +71,12 @@ while True:
 
         color.write("======================================================================\n" , "STRING")
     elif (a == 3):
-        dictionary=PyDictionary()
-        print("Don't Worry I Will Help You 😊😊")
-        time.sleep(1)
-        word=input("Enter the word for which you are searching: ")
-        e_mean=dictionary.meaning(word)
-        print(e_mean)
-        h_mean=dictionary.translate(word, "hi")
-        print(word, "in hindi is > ",h_mean)
+        sent = input("Give me the sentence for Translation")
+        langtar = input("So to which language you want me to translate it ?\n [Options : German , French , Arabic , Spanish , Korean]")
+        translator = Translator(to_lang=langtar.lower())
+        translation = translator.translate(sent)
+        color.write(translation, "KEYWORD")
+        
         color.write("======================================================================\n" , "STRING")
     elif (a == 4):
         color.write("Okay...here is one for you\n", "BUILTIN")
@@ -105,10 +85,7 @@ while True:
         color.write("======================================================================\n" , "STRING")
     elif (a == 5):
         print("Rules : 1.Answer as directed \n 2.Each Correct response will fetch 1 point , whereas a wrong one will cost deduction of 1 point ")
-        res= pyg.figlet_format("So Get ready \n All the best",font="slant")     
-        print(res)
-        time.sleep(1)
-
+        print("So get ready...get ready for the first one\n")
         score = 0
         first = input("When did the Constitution of India got ready (year)?")
         if (first == "1949"):
